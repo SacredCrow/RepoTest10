@@ -4,7 +4,9 @@
   "description": "Repository for testing the URL https://magento.softwaretestingboard.com/",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "test_run": "npx cypress open",
+    "login_test": "npx cypress run --spec 'cypress/e2e/magento/login.cy.js'"
   },
   "repository": {
     "type": "git",
