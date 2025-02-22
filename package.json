@@ -1,0 +1,22 @@
+{
+  "name": "repotest10",
+  "version": "1.0.0",
+  "description": "Repository for testing the URL https://magento.softwaretestingboard.com/",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SacredCrow/RepoTest10.git"
+  },
+  "author": "Adit",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SacredCrow/RepoTest10/issues"
+  },
+  "homepage": "https://github.com/SacredCrow/RepoTest10#readme",
+  "devDependencies": {
+    "cypress": "^14.0.3"
+  }
+}
