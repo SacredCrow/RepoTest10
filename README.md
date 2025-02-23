@@ -3,7 +3,7 @@ Repository for Automation testing the URL https://magento.softwaretestingboard.c
 
 Kelompok 10
 1. Angga Aditya Putra (SacredCrow) --> Verify Login
-2. Hafizh Akmal Rabbani (hafizhAR639) -->
+2. Hafizh Akmal Rabbani (hafizhAR639) --> Verify Register
 3. Mauludiyah Atika Sari () -->
 4. Zahra Luthfiah () -->
 5. M Arif Rahman () -->
