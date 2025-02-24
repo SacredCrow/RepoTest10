@@ -50,5 +50,36 @@ describe("Verify Registration Functionality", () => {
     cy.get(".mage-error").should("contain.text", "Please enter the same value again.");
   });
   
+  it("Failed Registration - Blank First name", () => {
+    RegistrationPage.getLastNameInput().type("Yono");
+    RegistrationPage.getEmailInput().type(`budi${Date.now()}@test.com`);
+    RegistrationPage.getPasswordInput().type("12345678");
+    RegistrationPage.getConfirmPasswordInput().type("123456789");
+    RegistrationPage.getRegisterButton().click();
+    RegistrationPage.getRegisterButton().click();
+    cy.get(".mage-error", { timeout: 5000 }).should("be.visible");
+    cy.get(".mage-error").should("contain.text", "This is a required field.");
+  });
+
+  it("Failed Registration - Blank Email", () => {
+    RegistrationPage.getFirstNameInput().type("Budi");
+    RegistrationPage.getLastNameInput().type("Yono");
+    RegistrationPage.getPasswordInput().type("12345678");
+    RegistrationPage.getConfirmPasswordInput().type("123456789");
+    RegistrationPage.getRegisterButton().click();
+    RegistrationPage.getRegisterButton().click();
+    cy.get(".mage-error", { timeout: 5000 }).should("be.visible");
+    cy.get(".mage-error").should("contain.text", "This is a required field.");
+  });
+
+  it("Failed Registration - Blank Password", () => {
+    RegistrationPage.getFirstNameInput().type("Budi");
+    RegistrationPage.getLastNameInput().type("Yono");
+    RegistrationPage.getEmailInput().type(`budi${Date.now()}@test.com`);
+    RegistrationPage.getRegisterButton().click();
+    RegistrationPage.getRegisterButton().click();
+    cy.get(".mage-error", { timeout: 5000 }).should("be.visible");
+    cy.get(".mage-error").should("contain.text", "This is a required field.");
+  });
   
 });
