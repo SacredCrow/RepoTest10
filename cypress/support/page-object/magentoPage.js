@@ -4,6 +4,7 @@ class magentoPage {
   pass_textbox = ".login-container > .block-customer-login > .block-content > #login-form > .fieldset > .password > .control > #pass";
   signin_button = ".login-container > .block-customer-login > .block-content > #login-form > .fieldset > .actions-toolbar > div.primary > #send2 > span";
 
+  //fungsi login
   clickSigninLabel() {
     cy.get(this.signin_label).click();
   }
