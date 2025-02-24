@@ -1,8 +1,8 @@
 class magentoPage {
   signin_label = ".panel > .header > .authorization-link > a";
   email_textbox = "#email";
-  pass_textbox = ".login-container > .block-customer-login > .block-content > #login-form > .fieldset > .password > .control > #pass";
-  signin_button = ".login-container > .block-customer-login > .block-content > #login-form > .fieldset > .actions-toolbar > div.primary > #send2 > span";
+  pass_textbox = "#pass";
+  signin_button = "#send2";
 
   //fungsi login
   clickSigninLabel() {

@@ -7,21 +7,25 @@ describe("Verify Login Functionality", () => {
 
   it("Success Login", () => {
     magentoPage.clickSigninLabel();
-    magentoPage.inputEmailTextbox("budiyono@mail.com");
-    magentoPage.inputPassTextbox("Coba123#");
-    magentoPage.clickSigninButton();
-    cy.get(".logo > img").should("be.visible");
-    cy.get(".base").should("have.text", "Home Page");
+    cy.fixture("login-users").then((users) => {
+      const datausers = users[0];
+      cy.login(datausers.email, datausers.password);
+
+      cy.get(".logo > img", { timeout: 5000 }).should("be.visible");
+      cy.get(".base").should("have.text", "Home Page");
+    });
   });
 
   it("Failed Login - Wrong Email", () => {
     magentoPage.clickSigninLabel();
-    magentoPage.inputEmailTextbox("budiyon0@mail.com");
-    magentoPage.inputPassTextbox("Coba123#");
-    magentoPage.clickSigninButton();
-    cy.url().should("include", "login");
-    cy.get(".message-error").should("be.visible");
-    cy.get(".message-error").should("contain.text", "The account sign-in was incorrect or your account is disabled temporarily. Please wait and try again later.");
+    cy.fixture("login-users").then((users) => {
+      const datausers = users[1];
+      cy.login(datausers.email, datausers.password);
+
+      cy.url().should("include", "login");
+      cy.get(".message-error", { timeout: 5000 }).should("be.visible");
+      cy.get(".message-error").should("contain.text", "The account sign-in was incorrect or your account is disabled temporarily. Please wait and try again later.");
+    });
   });
 
   it("Failed Login - Wrong Password", () => {
@@ -29,14 +33,16 @@ describe("Verify Login Functionality", () => {
     magentoPage.inputEmailTextbox("budiyono@mail.com");
     magentoPage.inputPassTextbox("Salahsalah");
     magentoPage.clickSigninButton();
+
     cy.url().should("include", "login");
-    cy.get(".message-error").should("be.visible");
+    cy.get(".message-error", { timeout: 5000 }).should("be.visible");
     cy.get(".message-error").should("contain.text", "The account sign-in was incorrect or your account is disabled temporarily. Please wait and try again later.");
   });
 
   it("Failed Login - Empty Fields", () => {
     magentoPage.clickSigninLabel();
     magentoPage.clickSigninButton();
+
     cy.get(".base").should("have.text", "Customer Login");
     cy.get("#email-error").should("contain.text", "This is a required field.");
     cy.get("#pass-error").should("contain.text", "This is a required field.");
@@ -46,6 +52,7 @@ describe("Verify Login Functionality", () => {
     magentoPage.clickSigninLabel();
     magentoPage.inputPassTextbox("Coba123#");
     magentoPage.clickSigninButton();
+
     cy.get(".base").should("have.text", "Customer Login");
     cy.get("#email-error").should("contain.text", "This is a required field.");
   });
@@ -54,6 +61,7 @@ describe("Verify Login Functionality", () => {
     magentoPage.clickSigninLabel();
     magentoPage.inputEmailTextbox("budiyono@mail.com");
     magentoPage.clickSigninButton();
+
     cy.get(".base").should("have.text", "Customer Login");
     cy.get("#pass-error").should("contain.text", "This is a required field.");
   });
@@ -63,9 +71,10 @@ describe("Verify Login Functionality", () => {
     magentoPage.inputEmailTextbox("budiyonomail.com");
     magentoPage.inputPassTextbox("Coba123#");
     magentoPage.clickSigninButton();
+
     cy.url().should("include", "login");
     cy.get(".base").should("contain.text", "Customer Login");
-    cy.get("#email-error").should("be.visible");
+    cy.get("#email-error", { timeout: 5000 }).should("be.visible");
     cy.get("#email-error").should("contain.text", "Please enter a valid email address (Ex: johndoe@domain.com).");
   });
 });
